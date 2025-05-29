@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #111;
+    color: #fff;
+}
+
+.container {
+    max-width: 400px;
+    margin: 60px auto;
+    background-color: #222;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+h2 {
+    text-align: center;
+    color: #FFD700;
+    margin-bottom: 30px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #333;
+    color: white;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #FFD700;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background-color: #e5c100;
+}
+
+.link-switch {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.link-switch a {
+    color: #FFD700;
+    text-decoration: none;
+}
+
+.link-switch a:hover {
+    text-decoration: underline;
+}

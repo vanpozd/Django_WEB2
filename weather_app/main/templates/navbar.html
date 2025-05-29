@@ -1,0 +1,37 @@
+<!-- templates/partials/navbar.html -->
+<nav class="navbar">
+    <a href="{% url 'home' %}" class="logo">🌤️ WeatherApp</a>
+    <div class="nav-links">
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">Профіль</a>
+            <a href="{% url 'logout' %}">Вийти</a>
+        {% else %}
+            <a href="{% url 'login' %}">Увійти</a>
+        {% endif %}
+    </div>
+</nav>
+
+<style>
+.navbar {
+    background-color: #000;
+    color: yellow;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: yellow;
+    text-decoration: none;
+}
+.nav-links a {
+    color: yellow;
+    margin-left: 20px;
+    text-decoration: none;
+}
+.nav-links a:hover {
+    text-decoration: underline;
+}
+</style>

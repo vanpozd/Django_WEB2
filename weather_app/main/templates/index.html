@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Погода в містах</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="container">
+        <h1>Погода в містах України</h1>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="update-btn">Оновити всі міста</button>
+        </form>
+        <div class="city-list">
+            {% for city in cities %}
+                <div class="city-card">
+                    <h2>{{ city.name }}</h2>
+                    <p>🌡 Температура: {{ city.temperature }}</p>
+                    <p>☁️ Опис: {{ city.description }}</p>
+                    <p>💧 Вологість: {{ city.humidity }}</p>
+                    <p>💨 Вітер: {{ city.wind }}</p>
+                </div>
+            {% empty %}
+                <p>Міста не знайдені.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

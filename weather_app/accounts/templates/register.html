@@ -1,18 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-
 <head>
-	<title>Register</title>
-	<link rel="stylesheet" href="/static/style.css">
+    <title>Реєстрація</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
-
 <body>
-	<form method="post">
-		{% csrf_token %}
-		<h2>Реєстрація</h2>
-		{{ form.as_p }}
-		<input type="submit" value="Зареєструватися">
-	</form>
+    <div class="container">
+        <h2>Реєстрація</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Зареєструватись</button>
+        </form>
+        <div class="link-switch">
+            <p>Вже маєш акаунт? <a href="{% url 'login' %}">Увійти</a></p>
+        </div>
+    </div>
 </body>
-
 </html>
