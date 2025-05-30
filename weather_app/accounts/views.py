@@ -6,15 +6,18 @@ from django.contrib.auth import logout
 from .forms import ProfileForm
 
 def register_view(request):
-    if request.method == 'POST':
-        form = RegisterForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('login')
+    if request.user.is_authenticated == False:
+        if request.method == 'POST':
+            form = RegisterForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                login(request, user)
+                return redirect('login')
+        else:
+            form = RegisterForm()
+        return render(request, 'register.html', {'form': form})
     else:
-        form = RegisterForm()
-    return render(request, 'register.html', {'form': form})
+        return redirect('home')
 
 def logout_view(request):
     logout(request)
@@ -26,10 +29,10 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('login')
+            return redirect('home')
     else:
         form = LoginForm()
-    return render(request, 'login.html', {'form': form})
+        return render(request, 'login.html', {'form': form})
 
 @login_required
 def profile_view(request):

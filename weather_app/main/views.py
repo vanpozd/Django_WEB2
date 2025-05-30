@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    cities = City.objects.all()
+    user = request.user
+    cities = user.cities.all()
 
     if request.method == 'POST':
         for city in cities:
@@ -19,3 +20,34 @@ def index(request):
         return redirect('home')
 
     return render(request, 'index.html', {'cities': cities})
+
+@login_required
+def user_cities_view(request):
+    user = request.user
+    all_cities = City.objects.all()
+    user_cities = user.cities.all()
+
+    if request.method == 'POST':
+        # Додати місто
+        if 'add_city' in request.POST:
+            city_id = request.POST.get('city_id')
+            if city_id:
+                city = City.objects.filter(id=city_id).first()
+                if city and city not in user_cities:
+                    user.cities.add(city)
+            return redirect('home')  # або назва твого урлу
+
+        # Видалити місто
+        elif 'remove_city' in request.POST:
+            city_id = request.POST.get('city_id')
+            if city_id:
+                city = City.objects.filter(id=city_id).first()
+                if city:
+                    user.cities.remove(city)
+            return redirect('home')
+
+    context = {
+        'user_cities': user_cities,
+        'all_cities': all_cities.exclude(id__in=user_cities.values_list('id', flat=True)),
+    }
+    return render(request, 'settings.html', context)

@@ -15,10 +15,10 @@ body {
     box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
 
-h2 {
+h1, h2 {
     text-align: center;
-    color: #FFD700;
-    margin-bottom: 30px;
+    color: #FFD700; /* яскраво-жовтий */
+    margin-bottom: 1rem;
 }
 
 form input[type="text"],
@@ -31,6 +31,7 @@ form input[type="email"] {
     border-radius: 8px;
     background-color: #333;
     color: white;
+    font-size: 1rem;
 }
 
 form button {
@@ -42,11 +43,17 @@ form button {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
 }
 
-form button:hover {
+form button:hover:not(:disabled) {
     background-color: #e5c100;
+}
+
+form button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
 }
 
 .link-switch {
@@ -57,8 +64,108 @@ form button:hover {
 .link-switch a {
     color: #FFD700;
     text-decoration: none;
+    font-weight: 600;
 }
 
 .link-switch a:hover {
     text-decoration: underline;
+}
+
+/* Списки для відображення міст і кнопок */
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+}
+
+li {
+    background-color: #222;
+    color: #fff;
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.4);
+}
+
+/* Кнопки */
+button {
+    background-color: #FFC107;
+    border: none;
+    color: #222;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+button:hover:not(:disabled) {
+    background-color: #e6b507;
+}
+
+button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+}
+
+/* Для форм з керуванням містами */
+form.add-city-form {
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+select {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #FFC107;
+    background-color: #333;
+    color: #fff;
+    min-width: 220px;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: #FFD54F;
+}
+
+/* Загальна обгортка для центрування контенту */
+.main-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.btn {
+    background-color: #FFC107;
+    border: none;
+    color: #222;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn:hover:not(:disabled) {
+    background-color: #e6b507;
+}
+
+.btn:disabled {
+    background-color: #777;
+    cursor: not-allowed;
 }
