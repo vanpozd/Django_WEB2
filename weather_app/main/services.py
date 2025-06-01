@@ -18,4 +18,7 @@ def get_weather_for_city(city_name):
             'humidity': f"{data['main']['humidity']}%",
             'wind': f"{data['wind']['speed']} м/с",
         }
+    else:
+        print(f"Error fetching weather data: {response.status_code}")
+        print(response.text)
     return None

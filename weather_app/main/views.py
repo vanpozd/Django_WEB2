@@ -35,7 +35,7 @@ def user_cities_view(request):
                 city = City.objects.filter(id=city_id).first()
                 if city and city not in user_cities:
                     user.cities.add(city)
-            return redirect('home')  # або назва твого урлу
+            return redirect('settings')  # або назва твого урлу
 
         # Видалити місто
         elif 'remove_city' in request.POST:
@@ -44,7 +44,7 @@ def user_cities_view(request):
                 city = City.objects.filter(id=city_id).first()
                 if city:
                     user.cities.remove(city)
-            return redirect('home')
+            return redirect('settings')
 
     context = {
         'user_cities': user_cities,

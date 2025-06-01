@@ -1,43 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <title>Погода в містах</title>
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
+
 <body>
     {% include 'navbar.html' %}
-    <a href="{% url 'home' %}" class="btn btn-secondary">Повернутися на головну</a>
-    {% block content %}
-    <h1>Ваші міста</h1>
-    <ul>
-    {% for city in user_cities %}
-        <li>
-        {{ city.name }}
-        <form method="post" style="display:inline;">
-            {% csrf_token %}
-            <input type="hidden" name="city_id" value="{{ city.id }}">
-            <button type="submit" name="remove_city">Видалити</button>
-        </form>
-        </li>
-    {% empty %}
-        <li>Ви ще не додали жодного міста.</li>
-    {% endfor %}
-    </ul>
+    <div class="container">
+        <a href="{% url 'home' %}" class="btn btn-secondary">⬅ Повернутися на головну</a>
 
-    <h2>Додати місто</h2>
-    <form method="post">
-    {% csrf_token %}
-    <select name="city_id" required>
-        {% for city in all_cities %}
-        <option value="{{ city.id }}">{{ city.name }}</option>
-        {% empty %}
-        <option disabled>Немає доступних міст для додавання</option>
-        {% endfor %}
-    </select>
-    <button type="submit" name="add_city">Додати</button>
-    </form>
-    {% endblock %}
+        <div class="card">
+            <h1>Ваші міста</h1>
+            <ul class="city-list">
+                {% for city in user_cities %}
+                <li class="city-item">
+                    {{ city.name }}
+                    <form method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="city_id" value="{{ city.id }}">
+                        <button type="submit" name="remove_city" class="btn">Видалити</button>
+                    </form>
+                </li>
+                {% empty %}
+                <li class="city-item">Ви ще не додали жодного міста.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="card form-card">
+            <h2>Додати місто</h2>
+            <form method="post">
+                {% csrf_token %}
+                <select name="city_id" required>
+                    {% for city in all_cities %}
+                    <option value="{{ city.id }}">{{ city.name }}</option>
+                    {% empty %}
+                    <option disabled>Немає доступних міст для додавання</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" name="add_city" class="btn btn-primary">Додати</button>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
